@@ -1,0 +1,57 @@
+name:                practica2
+version:             0.1.0.0
+
+extra-source-files:
+- README.md
+
+dependencies:
+- base >= 4.7 && < 5
+
+library:
+  source-dirs: src
+
+internal-libraries:
+  test-utils:
+    source-dirs: test/utils
+    dependencies:
+    - practica2
+    - QuickCheck
+
+executables:
+  practica2-exe:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - practica2
+    when:
+    - condition: false
+      other-modules: Paths_practica2
+
+tests:
+  practica2-test:
+    main:                Spec.hs
+    source-dirs:         test/hspec
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - practica2
+    - test-utils
+    - QuickCheck
+    - hspec
+
+  practica2-doctest:
+    main:                doctests.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - practica2
+    - doctest

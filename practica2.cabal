@@ -1,0 +1,79 @@
+cabal-version: 2.0
+
+-- This file has been generated from package.yaml by hpack version 0.34.4.
+--
+-- see: https://github.com/sol/hpack
+
+name:           practica2
+version:        0.1.0.0
+build-type:     Simple
+extra-source-files:
+    README.md
+
+library
+  exposed-modules:
+      Logic.Normal
+      Logic.Propositions
+      Logic.Tableaux
+  other-modules:
+      Paths_practica2
+  hs-source-dirs:
+      src
+  build-depends:
+      base >=4.7 && <5
+  default-language: Haskell2010
+
+library test-utils
+  exposed-modules:
+      Logic.Generators
+  other-modules:
+      Paths_practica2
+  hs-source-dirs:
+      test/utils
+  build-depends:
+      QuickCheck
+    , base >=4.7 && <5
+    , practica2
+  default-language: Haskell2010
+
+executable practica2-exe
+  main-is: Main.hs
+  hs-source-dirs:
+      app
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , practica2
+  default-language: Haskell2010
+
+test-suite practica2-doctest
+  type: exitcode-stdio-1.0
+  main-is: doctests.hs
+  other-modules:
+      Paths_practica2
+  hs-source-dirs:
+      test
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , doctest
+    , practica2
+  default-language: Haskell2010
+
+test-suite practica2-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      Logic.NormalSpec
+      Logic.TableauxSpec
+      Paths_practica2
+  hs-source-dirs:
+      test/hspec
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      QuickCheck
+    , base >=4.7 && <5
+    , hspec
+    , practica2
+    , test-utils
+  default-language: Haskell2010
